@@ -9,7 +9,7 @@ model = AutoModelForCausalLM.from_pretrained(
     model_id,
     device_map="cuda",
     trust_remote_code=True,
-    load_in_4bit=True,
+    load_in_4bit=False,
     _attn_implementation='eager'
 )
 
