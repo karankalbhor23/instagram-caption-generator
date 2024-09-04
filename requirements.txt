@@ -1,5 +1,5 @@
 transformers
 Pillow
 requests
-bitsandbytes>=0.39.0\
+bitsandbytes>=0.39.0
 accelerate == 0.34.0
