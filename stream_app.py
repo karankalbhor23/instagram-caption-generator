@@ -7,7 +7,7 @@ from transformers import AutoModelForCausalLM, AutoProcessor
 model_id = "microsoft/Phi-3.5-vision-instruct"
 model = AutoModelForCausalLM.from_pretrained(
     model_id,
-    device_map="cuda",
+    device_map="cpu",  # <--- Changed to "cpu"
     trust_remote_code=True,
     load_in_4bit=False,
     _attn_implementation='eager'
@@ -38,7 +38,7 @@ if uploaded_image is not None:
 
     # Create a message with the placeholder
     messages = [
-        {"role": "user", "content": placeholder + "generate 5 captions based on the provided image for instagram post remember each caption should be a medium length sentence and use emojis"},
+        {"role": "user", "content": placeholder + " generate 5 captions based on the provided image for instagram post remember each caption should be a medium length sentence and use emojis"},
     ]
 
     # Process the message and image
@@ -48,7 +48,7 @@ if uploaded_image is not None:
         add_generation_prompt=True
     )
 
-    inputs = processor(prompt, [image], return_tensors="pt").to("cuda:0")
+    inputs = processor(prompt, [image], return_tensors="pt").to("cpu")  # <--- Changed to "cpu"
 
     # Generate the description
     generation_args = {
