@@ -1,3 +1,4 @@
+!pip install --upgrade accelerate transformers
 import streamlit as st
 from PIL import Image
 import torch
